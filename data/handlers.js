@@ -15,7 +15,7 @@ const handleProfilePage = (req, res) => {
     res.render('pages/profile', {user, friendsList, greeting});
 }
 
-const hadnleSignin = (req, res) => {
+const handleSignin = (req, res) => {
     if (Object.keys(currentUser).length === 0) {
         res.render('pages/signin', {greeting})
     } else {
@@ -30,12 +30,10 @@ const handleName = (req, res) => {
         friendIds = user.friends;
         currentUser = user;
         greeting = `Howdy, ${currentUser.name}`;
-        res.status(200);
-        res.redirect(`/users/${user._id}`);
+        res.status(200).redirect(`/users/${user._id}`);
     } else {
-        res.status(404);
-        res.redirect('/signin');
+        res.status(404).redirect('/signin');
     }
 }
 
-module.exports = { handleHomepage, handleProfilePage, hadnleSignin, handleName }
+module.exports = { handleHomepage, handleProfilePage, handleSignin, handleName }
